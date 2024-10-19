@@ -12,16 +12,9 @@ public class Application {
         final int LIMIT_DIGIT = 3; // 자리 수 제한
 
         while (newGameOption == 1) {
-            // 1. 랜덤으로 0~9까지의 3자리 숫자 생성
-            Set<Integer> uniqueNumbers = new HashSet<>();
-            StringBuilder randomNumber = new StringBuilder();
-            while (uniqueNumbers.size() < LIMIT_DIGIT) {
-                int randomDigit = Randoms.pickNumberInRange(1, 9);
-                if (uniqueNumbers.add(randomDigit)) {
-                    randomNumber.append(randomDigit);
-                }
-            }
-            //System.out.println(randomNumber);
+            // 1. 랜덤으로 1~9까지의 3자리 숫자 생성 (함수로 분리)
+            String randomNumber = generateUniqueRandomNumber(LIMIT_DIGIT);
+
             while (true) {
                 // 2. 3자리 숫자 유저로부터 입력 받기
                 System.out.print("숫자를 입력해 주세요 : ");
@@ -32,10 +25,11 @@ public class Application {
                     throw new IllegalArgumentException("잘못된 입력입니다. 3자리 숫자를 입력해야 합니다.");
                 }
                 // 3. 숫자가 랜덤 숫자와 정확히 맞았는지 체크
-                if (randomNumber.toString().equals(userInput)) {
+                if (randomNumber.equals(userInput)) {
                     System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
                     break;
                 }
+
                 // 4. 스트라이크와 볼 계산
                 int strikeCount = 0;
                 int ballCount = 0;
@@ -43,7 +37,7 @@ public class Application {
                 for (int i = 0; i < LIMIT_DIGIT; i++) {
                     if (userInput.charAt(i) == randomNumber.charAt(i)) {
                         strikeCount++;
-                    } else if (randomNumber.toString().contains(String.valueOf(userInput.charAt(i)))) {
+                    } else if (randomNumber.contains(String.valueOf(userInput.charAt(i)))) {
                         ballCount++;
                     }
                 }
@@ -70,8 +64,21 @@ public class Application {
             if (newGameOption != 1 && newGameOption != 2) {
                 throw new IllegalArgumentException("잘못된 입력입니다. 1 또는 2를 입력해야 합니다.");
             }
+        }
+    }
 
+    // 1~9까지의 서로 다른 3자리 숫자를 생성하는 함수
+    private static String generateUniqueRandomNumber(int limitDigit) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        StringBuilder randomNumber = new StringBuilder();
+
+        while (uniqueNumbers.size() < limitDigit) {
+            int randomDigit = Randoms.pickNumberInRange(1, 9);
+            if (uniqueNumbers.add(randomDigit)) {
+                randomNumber.append(randomDigit);
+            }
         }
 
+        return randomNumber.toString();
     }
 }
