@@ -124,7 +124,22 @@
 <br>
 
 ---
+## 구현할 기능 목록
+1. 컴퓨터가 1부터 9까지 서로 다른 임의의 3자리 수를 생성하는 기능
 
+2. 사용자로부터 3자리 수를 입력받는 기능
+
+3. 입력된 숫자와 컴퓨터가 생성한 숫자를 비교하여 스트라이크와 볼을 계산하는 기능
+
+4. 계산된 스트라이크와 볼 개수를 사용자에게 결과로 출력하는 기능
+
+5. 사용자가 3개의 숫자를 모두 맞혔을 때 게임을 종료하는 기능
+
+6. 게임 종료 후, 사용자가 게임을 다시 시작할지 종료할지 선택할 수 있는 기능
+
+7. 사용자가 잘못된 값을 입력했을 때 `IllegalArgumentException`을 발생시키고 프로그램을 종료하는 기능
+
+---
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/java-baseball-precourse/blob/master/LICENSE) licensed.
