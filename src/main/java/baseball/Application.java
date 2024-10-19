@@ -31,10 +31,19 @@ public class Application {
                 ballCount++;
             }
         }
-        // 결과 출력 (임시)
-        System.out.println(strikeCount + " 스트라이크, " + ballCount + " 볼");
 
         // 5. 스트라이크, 볼, 낫싱 등의 결과 출력
+        if (strikeCount == 0 && ballCount == 0) {
+            System.out.println("낫싱");
+        } else {
+            if (ballCount > 0) {
+                System.out.print(ballCount + " 볼 ");
+            }
+            if (strikeCount > 0) {
+                System.out.print(strikeCount + " 스트라이크");
+            }
+            System.out.println();
+        }
         // 6. 게임이 끝난 후 새 게임 여부 확인
         // 7. IllegalArgumentException 예외처리
     }
