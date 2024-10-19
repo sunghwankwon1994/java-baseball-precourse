@@ -19,6 +19,10 @@ public class Application {
                 System.out.println("숫자를 입력해 주세요 : ");
                 String userInput = Console.readLine();
 
+                // 7. IllegalArgumentException 예외처리 (3자리 숫자가 아닌 경우)
+                if (userInput.length() != LIMIT_DIGIT || !userInput.matches("\\d+")) {
+                    throw new IllegalArgumentException("잘못된 입력입니다. 3자리 숫자를 입력해야 합니다.");
+                }
                 // 3. 숫자가 랜덤 숫자와 정확히 맞았는지 체크
                 if (randomNumber.equals(userInput)) {
                     System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
@@ -51,10 +55,16 @@ public class Application {
                     System.out.println();
                 }
             }
+
             // 6. 게임이 끝난 후 새 게임 여부 확인
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+
             newGameOption = Integer.parseInt(Console.readLine());
-            // 7. IllegalArgumentException 예외처리
+            // 7. IllegalArgumentException 예외 처리: 1 또는 2가 아닌 값을 입력할 때
+            if (newGameOption != 1 && newGameOption != 2) {
+                throw new IllegalArgumentException("잘못된 입력입니다. 1 또는 2를 입력해야 합니다.");
+            }
+
         }
 
     }
